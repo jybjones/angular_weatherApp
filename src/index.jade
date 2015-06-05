@@ -1,12 +1,15 @@
 doctype html
-html(lang="en-US", ng-app="angularAddresses")
+html(lang="en-US", ng-app="angular_weatherApp")
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    title
+    title angular_weatherApp
+    link(rel="stylesheet" href="css/main.css")
   body
     .container
+      .app(ng-controller="GeolocationController as weather")
+        .temp(ng-show="weather.temp_f") {{weather.temp_f}} ºF
 
 script(src="lib/build.js")
-    script(src="js/main.js")
+script(src="js/main.js")
