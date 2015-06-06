@@ -14,6 +14,10 @@ angular
         vm.temp_f = data.current_observation.temp_f;
       });
     });
+      $http
+      .get(`http://api.wunderground.com/api/7b7b50d6c7c89ebd/conditions/q/ + zip + , function (data) {
+
+};
 
   });
 
