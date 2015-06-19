@@ -2,5 +2,15 @@ form
   input(ng-model="weather.zip", type="number", pattern="[0-9]*", maxlength="5", min="01000")
   button(ng-click="weather.zipLookup()") Zip Code Lookup
 
-.temp(ng-hide="weather.temp_f") Looking up weather...
-.temp(ng-show="weather.temp_f") {{weather.temp_f}} ºF
+.loading(ng-hide="weather.temp_f") Looking up weather...
+.temp(ng-show="weather.temp_f" ng-repeat="day in weather.tendayarray")
+   .temp-wrapper-tenday
+     img.day(ng-src="{{day.icon_url}}")
+     p Day: {{day.date.weekday}}
+     p High: {{day.high.fahrenheit}} ºF
+     p Low: {{day.low.fahrenheit}} ºF
+.temp(ng-show="weather.geo_data")
+  .temp-wrapper-oneday
+    img.day(ng-src="{{weather.geo_data.icon_url}}")
+    p Your City: {{weather.geo_data.display_location.full}}
+    p Current Temp: {{weather.geo_data.temp_f}} ºF

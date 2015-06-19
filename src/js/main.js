@@ -1,6 +1,7 @@
 angular
   // .module('angular_weatherApp', [])
-  // .controller('GeolocationController', function ($http){
+  // .controller('GeolocationController'
+    //forecast10day/conditions/q/
     .module('angular_weatherApp', ['ngRoute'])
     .config(function ($routeProvider) {
       $routeProvider
@@ -18,18 +19,18 @@ angular
 
     .controller('GeolocationController', function ($http, $routeParams) {
       var vm = this;
-
-      // navigator.geolocation.getCurrentPosition(function (geoposition) {
-      //   var lat = geoposition.coords.latitude;
-      //   var long = geoposition.coords.longitude;
       vm.zip = +$routeParams.zip;
 
       if (vm.zip) {
         $http
-          // .get(`http://api.wunderground.com/api/7b7b50d6c7c89ebd/conditions/q/${lat},${long}.json`)
-          .get(`http://api.wunderground.com/api/7b7b50d6c7c89ebd/conditions/q/${vm.zip}.json`)
+          .get(`http://api.wunderground.com/api/7b7b50d6c7c89ebd/forecast10day/conditions/q/${vm.zip}.json`)
+          // .get(`)
+
           .success(function (data) {
             vm.temp_f = data.current_observation.temp_f;
+            vm.tendayarray = data.forecast.simpleforecast.forecastday;
+            vm.tendayarray = vm.tendayarray.slice(0, 3);
+            console.log(vm.tendayarray);
           });
       } else {
         navigator.geolocation.getCurrentPosition(function (geoposition) {
@@ -39,7 +40,9 @@ angular
          $http
           .get(`http://api.wunderground.com/api/7b7b50d6c7c89ebd/conditions/q/${lat},${long}.json`)
           .success(function (data) {
-            vm.temp_f = data.current_observation.temp_f;
+            console.log(data);
+            vm.temp_f = true;
+            vm.geo_data = data.current_observation;
           });
 
       });
@@ -47,6 +50,5 @@ angular
       vm.zipLookup = function (){
         window.location = '/#/' + vm.zip;
       };
-  // });
 });
 

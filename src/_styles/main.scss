@@ -3,10 +3,28 @@
   font-weight: bold;
   font-size: 45px;
   text-align: center;
+
 }
 
 form {margin: 50px;}
 input {
   width: 250px;
   text-align: center;
+}
+
+div.temp.ng-scope {
+  display: inline-block;
+}
+
+.temp .temp-wrapper-tenday {
+  background-color: blue;
+  display: inline-block;
+  margin: 10px;
+  // float: left;
+}
+
+.temp .temp-wrapper-oneday {
+  background-color: blue;
+  display: inline-block;
+  margin: 10px;
 }
